@@ -1,0 +1,51 @@
+1.Create two tables in SQL: influencers (with influencer_id as PRIMARY KEY and name) and posts (with post_id as PRIMARY KEY, influencer_id as FOREIGN KEY, and caption). Insert at least 3 influencers and 2 posts for each influencer.
+
+  create table influencers
+  (
+    influencer_id int primary key ,
+	name varchar (100)
+  );
+  
+  insert into influencers () values
+  (1, 'Bhuvan Bam'),
+  (2, 'Kusha Kapila'),
+  (3, 'Ranveer Allahbadia'),
+  (4, 'Dolly Singh');
+  
+  create table posts
+  (
+    post_id int primary key ,
+	influencer_id int ,
+	caption varchar(200),
+	foreign key (influencer_id) references influencers(influencer_id)
+);
+
+   insert into posts values 
+   (101, 1, 'New BB Ki Vines episode out now!'),
+   (102, 1, 'Behind the scenes from the shoot'),
+   (103, 2, 'Sunday mood: chai and chill'),
+   (104, 2, 'Collab announcement coming soon 👀'),
+   (105, 3, 'New podcast episode is live'),
+   (106, 3, 'Morning workout routine');
+
+2.Write an SQL query using INNER JOIN to display each post's caption along with the name of the influencer who posted it, based on the tables you created.
+  select p.caption ,i.name from posts as p 
+  inner join influencers as i 
+  on p.influencer_id = i.influencer_id;
+  
+3.Write an SQL query using LEFT JOIN to show all influencers and their posts, including influencers who haven't posted anything yet. If an influencer has no posts, display 'No Posts' in the caption column.<br><br><em><strong>Hint:</strong> Use IFNULL or COALESCE to handle NULL values in the result.</em>
+
+  select i.name,
+       IFNULL(p.caption, 'No Posts') as caption
+  from influencers as i
+  left join posts as p
+       on i.influencer_id = p.influencer_id;
+
+4.Write an SQL query using RIGHT JOIN to list all posts and the corresponding influencer's name, ensuring that even posts without a matching influencer_id (if any) are shown.
+
+  select p.post_id,
+       p.caption,
+       IFNULL(i.name, 'Unknown') as influencer_name
+  from influencers as i
+  right join posts as p
+        ON i.influencer_id = p.influencer_id;

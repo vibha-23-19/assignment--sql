@@ -1,0 +1,33 @@
+1.Create a SQL table called Restaurants with columns: id (INT, auto-increment), name (VARCHAR), cuisine (VARCHAR), rating (DECIMAL), and city (VARCHAR). Insert 5 sample restaurants into the table, each with a different cuisine and rating.
+  create table restaurants
+  ( 
+     id int primary key auto_increment,
+	 name  varchar(50),
+	 cuisine varchar(50),
+	 rating decimal(2,1),
+	 city varchar(20)
+   );
+
+ insert into restaurants (name, cuisine, rating, city) values
+('Spice Villa',  'Indian',   4.2, 'Ahmedabad'),
+('Pasta Palace', 'Italian',  4.5, 'Ahmedabad'),
+('Dragon Wok',   'Chinese',  3.2, 'Mumbai'),
+('Taco Fiesta',  'Mexican',  3.9, 'Surat'),
+('Sushi Zen',    'Japanese', 4.8, 'Ahmedabad');
+
+2.Write a SQL UPDATE statement to change the rating of the restaurant named 'Spice Villa' to 4.7 in the Restaurants table.
+   update restaurant 
+    set rating = 4.7
+	where name = 'spice villa';
+
+3.Delete all restaurants from the Restaurants table where the rating is less than 3.5 using a SQL DELETE statement.
+
+  delete from restaurants
+  where rating < 3.5; 
+  
+4.Use a SELECT query with WHERE and LIMIT to fetch the top 2 restaurants in the city 'Ahmedabad' with a rating above 4.0 from the Restaurants table.<br><br><em><strong>Hint:</strong> Combine WHERE for city and rating, and LIMIT to restrict the number of results.</em>
+  
+  select * from restaurants
+   where city ='Ahmedabad' and rating > 4.0
+   order by rating desc
+   limit 2;

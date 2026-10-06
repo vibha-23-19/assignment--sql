@@ -2,6 +2,7 @@
 screenshot/session-1-Q1.png
 
 2.Create a new database called InstaClone in MySQL Workbench, then create a table named Users with columns: user_id (INT, primary key), username (VARCHAR), email (VARCHAR), and followers_count (INT).
+
 create database InstaClone;
 use InstaClone;
 create table users(
@@ -12,6 +13,7 @@ followers_count int
 );
 
 3.Insert 3 sample users into the Users table you created, using realistic Instagram-style usernames and follower counts.
+
 insert into Users (user_id, username, email, followers_count) values
 (1, 'wanderlust.anya',   'anya.travels@gmail.com',  48250),
 (2, 'chef_rohan_eats',   'rohan.cooks@outlook.com', 125300),
@@ -19,5 +21,12 @@ insert into Users (user_id, username, email, followers_count) values
 
 4.Create another table in the InstaClone database called Posts with columns: post_id (INT, primary key), user_id (INT), caption (VARCHAR), and post_date (DATE). Add a foreign key from Posts.user_id to Users.user_id to establish a relationship.
 
+create table Posts(
+post_id int primary key, 
+user_id int,
+caption varchar(100), 
+post_date date ,
+foreign key(user_id) references users(user_id)
+);
 
 5.Write a short comparison (3-4 lines each) of MySQL, PostgreSQL, Oracle, and SQLite, focusing on where each one is commonly used (for example: web apps, mobile apps, enterprise systems, etc.).
